@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Lato-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Lato-Regular.ttf) format('truetype');
+}
+
+.layout {
+  font-family: 'Lato-Regular';
+  color: #333457;
+  line-height:1.5;
+  font-size: 15px;
+}
+
+.header {
+  font-size: 27px;
+  font-weight: bold;
+  background-color: #232D32;
+  padding: 10px 15px 2px 0px;
+}
+
+.chalky {
+  color: #8A97A5;
+}
+
+.main-price {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.bordered th,
+.bordered td,
+td.bordered {
+  border-bottom: 3px solid #AEB7BE;
+}
+
+.non-top-bordered th,
+.non-top-bordered td,
+td.non-top-bordered {
+  border-top: 0 !important;
+}
+
+.info-block {
+  margin-bottom: 30px;
+}
+
+.info-block:not(.header) {
+  padding: 0 15px;
+}
+
+.logo svg {
+  width: 200px;
+}
+
+.invoice {
+  padding-top: 10px;
+  color: #fff;
+}
+
+tr.info > td,
+td.info {
+  background-color: #00c0ef;
+}

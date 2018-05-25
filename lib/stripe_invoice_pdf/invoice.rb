@@ -4,6 +4,8 @@ require 'stripe'
 
 class StripeInvoicePdf
   class Invoice
+    include ActionView::Helpers::NumberHelper
+
     attr_reader :id, :issue_date, :due_date, :company, :plan_name,
                 :description, :qty, :unit_price, :amount,
                 :coupon_id, :coupon_percent_off, :coupon_amount_off,
@@ -42,6 +44,10 @@ class StripeInvoicePdf
 
     def date
       Time.zone.at(@invoice.date).strftime('%B %d, %Y')
+    end
+
+    def total
+      number_to_currency(@invoice.total.to_f / 100.0)
     end
 
     private

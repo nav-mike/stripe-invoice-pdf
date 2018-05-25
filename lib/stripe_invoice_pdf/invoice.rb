@@ -7,12 +7,12 @@ module StripeInvoicePdf
                 :coupon_id, :coupon_percent_off, :coupon_amount_off,
                 :total_amount, :number
     
-    Stripe.api_key = 'sk_...'
+    Stripe.api_key = StripeInvoicePdf[:api_key]
     
     def initialize(id)
       @id = id
       invoice = Stripe::Invoice.retrieve id
-      
+
       @issue_date = Time.zone.at invoice.date
       @due_date = Time.zone.at invoice.due_date
       @company = invoice.customer

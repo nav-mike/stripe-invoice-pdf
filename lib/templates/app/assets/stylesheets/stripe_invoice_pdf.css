@@ -15,6 +15,7 @@
 .header {
   font-size: 27px;
   font-weight: bold;
+  color: #fff;
   background-color: #232D32;
   padding: 10px 15px 2px 0px;
 }
@@ -44,17 +45,8 @@ td.non-top-bordered {
   margin-bottom: 30px;
 }
 
-.info-block:not(.header) {
+.info-block {
   padding: 0 15px;
-}
-
-.logo svg {
-  width: 200px;
-}
-
-.invoice {
-  padding-top: 10px;
-  color: #fff;
 }
 
 tr.info > td,

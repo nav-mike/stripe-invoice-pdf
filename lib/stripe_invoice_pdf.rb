@@ -1,11 +1,11 @@
-module StripeInvoicePdf
-  class << self
-    def config=(init_hash)
-      @conf = init_hash
-    end
-    
-    def [](key)
-      @conf[key.to_sym]
-    end
+require 'stripe_invoice_pdf/invoice'
+
+class StripeInvoicePdf
+  @@config = {}
+
+  cattr_accessor :config
+  
+  def self.api_key
+    config[:api_key]
   end
 end

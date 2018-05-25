@@ -18,7 +18,8 @@ class StripeInvoicePdf
       @due_date = due_date_parse
       @company = company_parse
       @plan_name = plan.nickname
-      @description = "#{Time.zone.at @invoice.period_start} TO #{Time.zone.at @invoice.period_end}"
+      @description = "#{Time.zone.at(@invoice.period_start).strftime('%^B %d, %Y')} TO \
+                      #{Time.zone.at(@invoice.period_end).strftime('%^B %d, %Y')}"
       @qty = @invoice.lines.data.first.quantity
       @unit_price = plan.amount.to_f / 100.0
       @amount = plan.amount.to_f / 100.0

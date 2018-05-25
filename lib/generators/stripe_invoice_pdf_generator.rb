@@ -11,6 +11,10 @@ if defined?(Rails)
         "\n  get 'invoices/:invoice_id' => 'invoices#show', constraints: {invoice_id: /[a-z0-9\_]+/i}"
       end
 
+      append_to_file 'config/initializers/assets.rb' do
+        "Rails.application.config.assets.precompile += %w( stripe_invoice_pdf.css )\n"
+      end
+
       copy_file 'app/controllers/invoices_controller.rb'
 
       copy_file 'app/views/invoices/show.html.erb'

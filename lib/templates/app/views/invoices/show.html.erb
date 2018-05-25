@@ -23,7 +23,7 @@
         </b>
 
         <div>
-          Company
+          <%= @invoice.plan_name %>
         </div>
       </div>
 
@@ -33,7 +33,7 @@
         </b>
 
         <div>
-          Customer
+          <%= @invoice.company %>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
 
       <div class="col-sm-6">
         <b>
-          773A224-0029
+          <%= @invoice.number %>
         </b>
       </div>
     </div>
@@ -59,7 +59,7 @@
 
       <div class="col-sm-6">
         <b>
-          May 23, 2018
+          <%= @invoice.issue_date %>
         </b>
       </div>
     </div>
@@ -71,17 +71,17 @@
 
       <div class="col-sm-6">
         <b>
-          May 23, 2018
+          <%= @invoice.due_date %>
         </b>
       </div>
     </div>
   </div>
-</div>
+</div>                                                                                                      
 
 <!-- invoice main price -->
 <div class="row main-price info-block">
   <div class="container-fluid">
-    $0.00 due May 23, 2018
+    <%= @invoice.total %> due <%= @invoice.date %>
   </div>
 </div>
 
@@ -101,7 +101,7 @@
       <!-- dates -->
       <tr>
         <td colspan="4"  class="chalky text-uppercase">
-          May 22, 2018 to May 23, 2018
+          <%= @invoice.description %>
         </td>
       </tr>
 
@@ -109,19 +109,19 @@
       <!-- if tr is last, then `bordered` class is added -->
       <tr class="info bordered non-top-bordered">
         <td>
-          Subscription to some service
+          <%= @invoice.plan_name %>
         </td>
 
         <td class="chalky">
-          0
+          <%= @invoice.qty %>
         </td>
 
         <td class="chalky">
-          $750
+          <%= @invoice.unit_price %>
         </td>
 
         <td>
-          $0.00
+          <%= @invoice.amount %>
         </td>
       </tr>
 
@@ -134,7 +134,7 @@
         </td>
 
         <td>
-          $0.00
+          <%= @invoice.subtotal %>
         </td>
       </tr>
 
@@ -142,11 +142,11 @@
         <td colspan="2" class="non-top-bordered"></td>
 
         <td class="bordered chalky">
-          L4oUU4d1Jq4 (50%)
+          <%= @invoice.coupon_id %>
         </td>
 
         <td class="bordered">
-          $0.00
+          <%= @invoice.coupon_amount_off %>
         </td>
       </tr>
 
@@ -158,7 +158,7 @@
         </td>
 
         <td class="info">
-          $0.00
+          <%= @invoice.total_amount %>
         </td>
       </tr>
     </tbody>

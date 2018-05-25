@@ -1,182 +1,166 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title></title>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <!-- styles -->
-    <!-- TODO: fix paths -->
-    <link rel="stylesheet" href="<%= application.css %>">
-  </head>
+<!-- header -->
+<div class="row header info-block">
+  <div class="col-sm-6">
+    <!-- logo -->
+    <div class="logo">
+      Company logo
+    </div>
+  </div>
 
-  <body class="layout">
-    <!-- header -->
-    <div class="row header info-block">
+  <div class="col-sm-6 text-right invoice">
+    Invoice
+  </div>
+</div>
+
+<!-- invoice attributes -->
+<div class="row info-block">
+  <div class="col-sm-7">
+    <div class="row">
       <div class="col-sm-6">
-        <!-- logo -->
-        <div class="logo">
-          Company logo
+        <b>
+          Payable to
+        </b>
+
+        <div>
+          Company
         </div>
       </div>
 
-      <div class="col-sm-6 text-right invoice">
-        Invoice
-      </div>
-    </div>
+      <div class="col-sm-6">
+        <b>
+          Bill to
+        </b>
 
-    <!-- invoice attributes -->
-    <div class="row info-block">
-      <div class="col-sm-7">
-        <div class="row">
-          <div class="col-sm-6">
-            <b>
-              Payable to
-            </b>
-
-            <div>
-              Company
-            </div>
-          </div>
-
-          <div class="col-sm-6">
-            <b>
-              Bill to
-            </b>
-
-            <div>
-              Customer
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-5 text-right">
-        <div class="row">
-          <div class="col-sm-6">
-            Invoice number
-          </div>
-
-          <div class="col-sm-6">
-            <b>
-              773A224-0029
-            </b>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-6">
-            Date of issue
-          </div>
-
-          <div class="col-sm-6">
-            <b>
-              May 23, 2018
-            </b>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-6">
-            Date due
-          </div>
-
-          <div class="col-sm-6">
-            <b>
-              May 23, 2018
-            </b>
-          </div>
+        <div>
+          Customer
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- invoice main price -->
-    <div class="row main-price info-block">
-      <div class="container-fluid">
-        $0.00 due May 23, 2018
+  <div class="col-sm-5 text-right">
+    <div class="row">
+      <div class="col-sm-6">
+        Invoice number
+      </div>
+
+      <div class="col-sm-6">
+        <b>
+          773A224-0029
+        </b>
       </div>
     </div>
 
-    <!-- table -->
-    <div class="info-block">
-      <table class="table table-responsive">
-        <thead>
-          <tr class="bordered">
-            <th>Description</th>
-            <th>Qty</th>
-            <th>Unit price</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
+    <div class="row">
+      <div class="col-sm-6">
+        Date of issue
+      </div>
 
-        <tbody>
-          <!-- dates -->
-          <tr>
-            <td colspan="4"  class="chalky text-uppercase">
-              May 22, 2018 to May 23, 2018
-            </td>
-          </tr>
-
-          <!-- item in invoice -->
-          <!-- if tr is last, then `bordered` class is added -->
-          <tr class="info bordered non-top-bordered">
-            <td>
-              Subscription to some service
-            </td>
-
-            <td class="chalky">
-              0
-            </td>
-
-            <td class="chalky">
-              $750
-            </td>
-
-            <td>
-              $0.00
-            </td>
-          </tr>
-
-          <!-- total rows -->
-          <tr>
-            <td colspan="2" class="non-top-bordered"></td>
-
-            <td class="chalky">
-              Subtotal
-            </td>
-
-            <td>
-              $0.00
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="2" class="non-top-bordered"></td>
-
-            <td class="bordered chalky">
-              L4oUU4d1Jq4 (50%)
-            </td>
-
-            <td class="bordered">
-              $0.00
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="2" class="non-top-bordered"></td>
-
-            <td class="info">
-              Amount due
-            </td>
-
-            <td class="info">
-              $0.00
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="col-sm-6">
+        <b>
+          May 23, 2018
+        </b>
+      </div>
     </div>
-  </body>
-</html>
+
+    <div class="row">
+      <div class="col-sm-6">
+        Date due
+      </div>
+
+      <div class="col-sm-6">
+        <b>
+          May 23, 2018
+        </b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- invoice main price -->
+<div class="row main-price info-block">
+  <div class="container-fluid">
+    $0.00 due May 23, 2018
+  </div>
+</div>
+
+<!-- table -->
+<div class="info-block">
+  <table class="table table-responsive">
+    <thead>
+      <tr class="bordered">
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Unit price</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- dates -->
+      <tr>
+        <td colspan="4"  class="chalky text-uppercase">
+          May 22, 2018 to May 23, 2018
+        </td>
+      </tr>
+
+      <!-- item in invoice -->
+      <!-- if tr is last, then `bordered` class is added -->
+      <tr class="info bordered non-top-bordered">
+        <td>
+          Subscription to some service
+        </td>
+
+        <td class="chalky">
+          0
+        </td>
+
+        <td class="chalky">
+          $750
+        </td>
+
+        <td>
+          $0.00
+        </td>
+      </tr>
+
+      <!-- total rows -->
+      <tr>
+        <td colspan="2" class="non-top-bordered"></td>
+
+        <td class="chalky">
+          Subtotal
+        </td>
+
+        <td>
+          $0.00
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="non-top-bordered"></td>
+
+        <td class="bordered chalky">
+          L4oUU4d1Jq4 (50%)
+        </td>
+
+        <td class="bordered">
+          $0.00
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="non-top-bordered"></td>
+
+        <td class="info">
+          Amount due
+        </td>
+
+        <td class="info">
+          $0.00
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

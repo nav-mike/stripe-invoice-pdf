@@ -40,6 +40,10 @@ class StripeInvoicePdf
       Stripe::Invoice.retrieve id
     end
 
+    def date
+      Time.zone.at(@invoice.date).strftime('%B %d, %Y')
+    end
+
     private
 
     def due_date_parse

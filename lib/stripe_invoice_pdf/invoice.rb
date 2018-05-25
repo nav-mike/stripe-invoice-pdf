@@ -25,9 +25,9 @@ class StripeInvoicePdf
       @coupon_id = parse_coupon_id
       @coupon_percent_off = parse_coupon_percent_off
       @coupon_amount_off = parse_coupon_amount_off.to_f / 100
-      @total_amount = @amount
+      @total_amount = @invoice.total
       @number = @invoice.number
-      @subtotal = -1.0
+      @subtotal = @invoice.subtotal
     end
 
     def self.key

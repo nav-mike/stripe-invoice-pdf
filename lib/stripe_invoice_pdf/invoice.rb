@@ -14,7 +14,7 @@ class StripeInvoicePdf
       @invoice = Stripe::Invoice.retrieve id
 
       @id = id
-      @issue_date = Time.zone.at @invoice.date
+      @issue_date = Time.zone.at(@invoice.date).strftime('%^B %d, %Y')
       @due_date = due_date_parse
       @company = company_parse
       @plan_name = plan.nickname
@@ -44,7 +44,7 @@ class StripeInvoicePdf
 
     def due_date_parse
       return nil unless @invoice.due_date
-      Time.zone.at @invoice.du_date
+      Time.zone.at(@invoice.du_date).strftime('%^B %d, %Y')
     end
 
     def company_parse

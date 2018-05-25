@@ -7,7 +7,7 @@ class StripeInvoicePdf
     attr_reader :id, :issue_date, :due_date, :company, :plan_name,
                 :description, :qty, :unit_price, :amount,
                 :coupon_id, :coupon_percent_off, :coupon_amount_off,
-                :total_amount, :number
+                :total_amount, :number, :subtotal
 
     def initialize(id)
       Stripe.api_key = Invoice.key

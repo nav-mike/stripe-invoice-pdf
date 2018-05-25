@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'stripe'
 
 class StripeInvoicePdf
@@ -6,7 +8,7 @@ class StripeInvoicePdf
                 :description, :qty, :unit_price, :amount,
                 :coupon_id, :coupon_percent_off, :coupon_amount_off,
                 :total_amount, :number
-    
+
     def initialize(id)
       Stripe.api_key = Invoice.key
       @invoice = Stripe::Invoice.retrieve id
@@ -26,49 +28,49 @@ class StripeInvoicePdf
       @total_amount = @amount
       @number = @invoice.number
     end
-    
+
     def self.key
       StripeInvoicePdf.api_key
     end
-    
+
     def self.debug(id)
       Stripe.api_key = key
       Stripe::Invoice.retrieve id
     end
-    
+
     private
-    
+
     def due_date_parse
       return nil unless @invoice.due_date
       Time.zone.at @invoice.du_date
     end
-    
+
     def company_parse
       customer.description
     end
-    
+
     def customer
       @customer ||= Stripe::Customer.retrieve(@invoice.customer)
     end
-    
+
     def plan
       @plan ||= @invoice.lines.data.first.plan
     end
-    
+
     def subscription
       @subscription ||= Stripe::Subscription.retrieve(@invoice.subscription)
     end
-    
+
     def parse_coupon_id
       return nil unless subscription.discount
       subscription.discount.coupon.id
     end
-    
+
     def parse_coupon_percent_off
       return nil unless subscription.discount
       subscription.discount.coupon.percent_off
     end
-    
+
     def parse_coupon_amount_off
       return nil unless subscription.discount
       subscription.discount.coupon.amount_off

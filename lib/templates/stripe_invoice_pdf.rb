@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # StripeInvoicePdf Global Configuration
 #
 # Use this to set up shared configuration options for your entire application.

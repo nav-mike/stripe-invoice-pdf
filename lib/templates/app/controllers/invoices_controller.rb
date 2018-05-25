@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
   def show
-    file = StripeInvoicePdf::Invoice.new(params[:invoice_id]).pdf
-    render pdf: file.name
+    @invoice = StripeInvoicePdf::Invoice.new(params[:invoice_id])
+    render pdf: "Invoice-#{@invoice.number}"
   end
 end

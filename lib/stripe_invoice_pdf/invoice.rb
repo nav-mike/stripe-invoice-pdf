@@ -8,23 +8,23 @@ class StripeInvoicePdf
                 :total_amount, :number
     
     def initialize(id)
-      @id = id
       Stripe.api_key = Invoice.key
-      invoice = Stripe::Invoice.retrieve id
+      @invoice = Stripe::Invoice.retrieve id
 
-      @issue_date = Time.zone.at invoice.date
-      @due_date = due_date_parse invoice
-      @company = company_parse invoice
-      @plan_name = plan(invoice).nickname
-      @description = "#{invoice.period_start} TO #{invoice.period_end}"
-      @qty = invoice.lines.data.first.quantity
-      @unit_price = plan(invoice).amount.to_f / 100.0
-      @amount = plan(invoice).amount.to_f / 100.0
-      @coupon_id = parse_coupon_id invoice
-      @coupon_percent_off = parse_coupon_percent_off invoice
-      @coupon_amount_off = parse_coupon_amount_off(invoice).to_f / 100
+      @id = id
+      @issue_date = Time.zone.at @invoice.date
+      @due_date = due_date_parse
+      @company = company_parse
+      @plan_name = plan.nickname
+      @description = "#{@invoice.period_start} TO #{@invoice.period_end}"
+      @qty = @invoice.lines.data.first.quantity
+      @unit_price = plan.amount.to_f / 100.0
+      @amount = plan.amount.to_f / 100.0
+      @coupon_id = parse_coupon_id
+      @coupon_percent_off = parse_coupon_percent_off
+      @coupon_amount_off = parse_coupon_amount_off.to_f / 100
       @total_amount = @amount
-      @number = invoice.number
+      @number = @invoice.number
     end
     
     def self.key
@@ -38,40 +38,40 @@ class StripeInvoicePdf
     
     private
     
-    def due_date_parse(invoice)
-      return nil unless invoice.due_date
-      Time.zone.at invoice.du_date
+    def due_date_parse
+      return nil unless @invoice.due_date
+      Time.zone.at @invoice.du_date
     end
     
-    def company_parse(invoice)
-      customer(invoice).description
+    def company_parse
+      customer.description
     end
     
-    def customer(invoice)
-      @customer ||= Stripe::Customer.retrieve(invoice.customer)
+    def customer
+      @customer ||= Stripe::Customer.retrieve(@invoice.customer)
     end
     
-    def plan(invoice)
-      @plan ||= invoice.lines.data.first.plan
+    def plan
+      @plan ||= @invoice.lines.data.first.plan
     end
     
-    def subscription(invoice)
-      @subscription ||= Stripe::Subscription.retrieve(invoice.subscription)
+    def subscription
+      @subscription ||= Stripe::Subscription.retrieve(@invoice.subscription)
     end
     
-    def parse_coupon_id(invoice)
-      return nil unless subscription(invoice).discount
-      subscription(invoice).discount.coupon.id
+    def parse_coupon_id
+      return nil unless subscription.discount
+      subscription.discount.coupon.id
     end
     
-    def parse_coupon_percent_off(invoice)
-      return nil unless subscription(invoice).discount
-      subscription(invoice).discount.coupon.percent_off
+    def parse_coupon_percent_off
+      return nil unless subscription.discount
+      subscription.discount.coupon.percent_off
     end
     
-    def parse_coupon_amount_off(invoice)
-      return nil unless subscription(invoice).discount
-      subscription(invoice).discount.coupon.amount_off
+    def parse_coupon_amount_off
+      return nil unless subscription.discount
+      subscription.discount.coupon.amount_off
     end
   end
 end

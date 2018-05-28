@@ -50,14 +50,15 @@ class StripeInvoicePdf
       number_to_currency(@invoice.total.to_f / 100.0)
     end
 
-    def price # unit_price
+    # unit_price
+    def price
       number_to_currency(plan.try(:amount).to_f / 100.0)
     end
 
     private
 
     def due_date_parse
-      return '-' unless @invoice.due_date.present?
+      return date unless @invoice.due_date.present?
       Time.zone.at(@invoice.due_date).strftime('%^B %d, %Y')
     end
 

@@ -70,6 +70,7 @@ class StripeInvoicePdf
     end
 
     def subscription
+      return nil unless @invoice.subscription
       @subscription ||= Stripe::Subscription.retrieve(@invoice.subscription)
     end
 

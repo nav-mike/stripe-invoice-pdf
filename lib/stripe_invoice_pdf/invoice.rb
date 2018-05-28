@@ -54,7 +54,7 @@ class StripeInvoicePdf
 
     def due_date_parse
       return nil unless @invoice.due_date
-      Time.zone.at(@invoice.du_date).strftime('%^B %d, %Y')
+      Time.zone.at(@invoice.due_date).strftime('%^B %d, %Y')
     end
 
     def company_parse

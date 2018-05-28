@@ -53,7 +53,7 @@ class StripeInvoicePdf
     private
 
     def due_date_parse
-      return nil unless @invoice.due_date
+      return '-' unless @invoice.due_date
       Time.zone.at(@invoice.due_date).strftime('%^B %d, %Y')
     end
 

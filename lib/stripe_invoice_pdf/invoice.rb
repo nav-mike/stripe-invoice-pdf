@@ -23,8 +23,8 @@ class StripeInvoicePdf
       @description = "#{Time.zone.at(@invoice.period_start).strftime('%^B %d, %Y')} TO \
                       #{Time.zone.at(@invoice.period_end).strftime('%^B %d, %Y')}"
       @qty = @invoice.lines.data.first.quantity
-      @unit_price = plan.amount.to_f / 100.0
-      @amount = plan.amount.to_f / 100.0
+      @unit_price = plan.try(:amount).to_f / 100.0
+      @amount = plan.try(:amount).to_f / 100.0
       @coupon_id = parse_coupon_id
       @coupon_percent_off = parse_coupon_percent_off
       @coupon_amount_off = parse_coupon_amount_off.to_f / 100

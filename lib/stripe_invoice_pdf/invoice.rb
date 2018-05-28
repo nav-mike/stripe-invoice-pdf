@@ -58,7 +58,7 @@ class StripeInvoicePdf
     end
 
     def company_parse
-      customer.description
+      customer.try(:description)
     end
 
     def customer

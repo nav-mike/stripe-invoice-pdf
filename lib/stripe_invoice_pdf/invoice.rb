@@ -75,16 +75,19 @@ class StripeInvoicePdf
     end
 
     def parse_coupon_id
+      return nil unless subscription
       return nil unless subscription.discount
       subscription.discount.coupon.id
     end
 
     def parse_coupon_percent_off
+      return nil unless subscription
       return nil unless subscription.discount
       subscription.discount.coupon.percent_off
     end
 
     def parse_coupon_amount_off
+      return nil unless subscription
       return nil unless subscription.discount
       subscription.discount.coupon.amount_off
     end

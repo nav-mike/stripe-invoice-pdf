@@ -50,6 +50,10 @@ class StripeInvoicePdf
       number_to_currency(@invoice.total.to_f / 100.0)
     end
 
+    def price # unit_price
+      number_to_currency(plan.try(:amount).to_f / 100.0)
+    end
+
     private
 
     def due_date_parse

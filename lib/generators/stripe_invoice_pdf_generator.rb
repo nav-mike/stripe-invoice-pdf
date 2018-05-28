@@ -21,7 +21,7 @@ if defined?(Rails)
 
       copy_file 'app/controllers/invoices_controller.rb'
 
-      copy_file 'app/views/invoices/show.html.erb'
+      copy_file 'app/views/invoices/show.pdf.erb'
       copy_file 'app/views/layouts/stripe_invoice_pdf/pdf.html.erb'
 
       copy_file 'app/assets/stylesheets/stripe_invoice_pdf.css'

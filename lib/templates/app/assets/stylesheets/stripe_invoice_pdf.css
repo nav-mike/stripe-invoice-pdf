@@ -2,12 +2,12 @@
  *= require bootstrap.min
  */
 
-@font-face {
-  font-family: 'Lato-Regular';
-  font-style: normal;
-  font-weight: 400;
-  src: url(Lato-Regular.ttf) format('truetype');
-}
+/*@font-face {*/
+/*  font-family: 'Lato-Regular';*/
+/*  font-style: normal;*/
+/*  font-weight: 400;*/
+/*  src: url(Lato-Regular.ttf) format('truetype');*/
+/*}*/
 
 .layout {
   font-family: 'Lato-Regular';

@@ -65,8 +65,8 @@ class StripeInvoicePdf
 
     def discount
       amount = plan.try(:amount).to_f
-      return number_to_currency(nil) unless subscription
-      return number_to_currency(nil) unless subscription.discount
+      return number_to_currency(0.0) unless subscription
+      return number_to_currency(0.0) unless subscription.discount
       return number_to_currency(subscription.discount.coupon.amount_off) if subscription.discount.coupon.amount_off
       number_to_currency((amount * subscription.discount.coupon.percent_off / 100.0).to_f)
     end

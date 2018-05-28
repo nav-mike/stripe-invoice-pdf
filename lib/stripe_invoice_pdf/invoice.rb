@@ -46,6 +46,10 @@ class StripeInvoicePdf
       Time.zone.at(@invoice.date).strftime('%B %d, %Y')
     end
 
+    def subtotal_view
+      number_to_currency(@invoice.subtotal)
+    end
+
     def total
       number_to_currency(@invoice.total.to_f / 100.0)
     end

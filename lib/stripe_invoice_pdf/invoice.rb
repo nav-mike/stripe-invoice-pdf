@@ -58,7 +58,7 @@ class StripeInvoicePdf
     private
 
     def due_date_parse
-      return date unless @invoice.due_date.present?
+      return @issue_date unless @invoice.due_date.present?
       Time.zone.at(@invoice.due_date).strftime('%^B %d, %Y')
     end
 

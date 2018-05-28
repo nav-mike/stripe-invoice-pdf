@@ -10,4 +10,8 @@ class StripeInvoicePdf
   def self.api_key
     config[:api_key]
   end
+
+  def self.company_logo
+    config[:company_logo]
+  end
 end

@@ -28,6 +28,11 @@ if defined?(Rails)
       copy_file 'app/assets/stylesheets/bootstrap.min.css'
 
       copy_file 'app/assets/fonts/Lato-Regular.ttf'
+
+      generate 'wicked_pdf'
+      append_to_file 'config/initializers/mime_types.rb' do
+        "Mime::Type.register 'application/pdf', :pdf\n"
+      end
     end
   end
 end

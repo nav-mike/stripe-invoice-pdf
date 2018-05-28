@@ -63,6 +63,14 @@ class StripeInvoicePdf
       number_to_currency(plan.try(:amount).to_f / 100.0)
     end
 
+    def discount
+      amount = plan.try(:amount).to_f
+      return number_to_currency(amount) unless subscription
+      return number_to_currency(amount) unless subscription.discount
+      return number_to_currency(amount - subscription.discount.coupon.amount_off) if subscription.discount.coupon.amount_off
+      number_to_currency(amount - (amount * subscription.discount.coupon.percent_off / 100.0).to_f)
+    end
+
     private
 
     def due_date_parse

@@ -6,37 +6,29 @@ class StripeInvoicePdf
   class Invoice
     include ActionView::Helpers::NumberHelper
 
-    attr_reader :id, :issue_date, :due_date, :company, :plan_name,
-                :description, :qty, :unit_price, :amount,
+    attr_reader :unit_price,
                 :coupon_id, :coupon_percent_off, :coupon_amount_off,
-                :total_amount, :number, :subtotal
+                :total_amount
 
     def initialize(id)
-      Stripe.api_key = Invoice.key
+      Stripe.api_key = Invoice.key unless Stripe.api_key
       @invoice = Stripe::Invoice.retrieve id
-
-      @id = id
-      @issue_date = Time.zone.at(@invoice.date).strftime('%^B %d, %Y')
-      @due_date = due_date_parse
-      @company = company_parse
-      @plan_name = plan.try(:nickname)
-      @description = "#{Time.zone.at(@invoice.period_start).strftime('%^B %d, %Y')} TO \
-                      #{Time.zone.at(@invoice.period_end).strftime('%^B %d, %Y')}"
-      @qty = @invoice.lines.data.first.quantity
-      @unit_price = plan.try(:amount).to_f / 100.0
-      @amount = plan.try(:amount).to_f / 100.0
-      @total_amount = @invoice.total
-      @number = @invoice.number
-      @subtotal = @invoice.subtotal
     end
 
     def self.key
       StripeInvoicePdf.api_key
     end
 
-    def self.debug(id)
-      Stripe.api_key = key
-      Stripe::Invoice.retrieve id
+    def plan_name
+      plan.try(:nickname)
+    end
+
+    def customer_name
+      customer.try(:description)
+    end
+
+    def quantity
+      @invoice.lines.data.first.quantity
     end
 
     def coupon
@@ -51,7 +43,16 @@ class StripeInvoicePdf
       Time.zone.at(@invoice.date).strftime('%B %d, %Y')
     end
 
-    def subtotal_view
+    def issue_date
+      Time.zone.at(@invoice.date).strftime('%^B %d, %Y')
+    end
+
+    def due_date
+      return issue_date unless @invoice.due_date.present?
+      Time.zone.at(@invoice.due_date).strftime('%^B %d, %Y')
+    end
+
+    def subtotal
       number_to_currency(@invoice.subtotal)
     end
 
@@ -64,28 +65,28 @@ class StripeInvoicePdf
       number_to_currency(plan.try(:amount).to_f / 100.0)
     end
 
-    def amount_view
+    def amount
       number_to_currency(plan.try(:amount).to_f / 100.0)
     end
 
     def discount
-      amount = plan.try(:amount).to_f
+      amount = plan.try(:amount).to_f / 100
       return number_to_currency(0.0) unless subscription
       return number_to_currency(0.0) unless subscription.discount
-      return number_to_currency(subscription.discount.coupon.amount_off) if subscription.discount.coupon.amount_off
+      return number_to_currency(subscription.discount.coupon.amount_off.to_f / 100.0) if subscription.discount.coupon.amount_off
       number_to_currency((amount * subscription.discount.coupon.percent_off / 100.0).to_f)
     end
 
+    def number
+      @invoice.number
+    end
+
+    def description
+      "#{Time.zone.at(@invoice.period_start).strftime('%^B %d, %Y')} TO \
+        #{Time.zone.at(@invoice.period_end).strftime('%^B %d, %Y')}"
+    end
+
     private
-
-    def due_date_parse
-      return @issue_date unless @invoice.due_date.present?
-      Time.zone.at(@invoice.due_date).strftime('%^B %d, %Y')
-    end
-
-    def company_parse
-      customer.try(:description)
-    end
 
     def customer
       @customer ||= Stripe::Customer.retrieve(@invoice.customer)

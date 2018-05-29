@@ -33,7 +33,7 @@
         </b>
 
         <div>
-          <%= @invoice.company %>
+          <%= @invoice.customer_name %>
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
         </td>
 
         <td class="chalky">
-          <%= @invoice.qty %>
+          <%= @invoice.quantity %>
         </td>
 
         <td class="chalky">
@@ -121,7 +121,7 @@
         </td>
 
         <td>
-          <%= @invoice.amount_view %>
+          <%= @invoice.amount %>
         </td>
       </tr>
 
@@ -134,7 +134,7 @@
         </td>
 
         <td>
-          <%= @invoice.subtotal_view %>
+          <%= @invoice.subtotal %>
         </td>
       </tr>
 

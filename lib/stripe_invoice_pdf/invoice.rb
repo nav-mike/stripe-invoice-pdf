@@ -43,8 +43,8 @@ class StripeInvoicePdf
       return nil unless subscription
       return nil unless subscription.discount
       id = subscription.discount.coupon.id
-      return "#{id} #{subscription.discount.coupon.percent_off}" if subscription.discount.coupon.percent_off
-      "#{id} #{number_to_currency(subscription.discount.coupon.amount_off)}"
+      return "#{id} (#{subscription.discount.coupon.percent_off}%)" if subscription.discount.coupon.percent_off
+      "#{id} (#{number_to_currency(subscription.discount.coupon.amount_off)})"
     end
 
     def date

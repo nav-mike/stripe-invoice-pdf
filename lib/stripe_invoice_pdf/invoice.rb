@@ -25,9 +25,6 @@ class StripeInvoicePdf
       @qty = @invoice.lines.data.first.quantity
       @unit_price = plan.try(:amount).to_f / 100.0
       @amount = plan.try(:amount).to_f / 100.0
-      @coupon_id = parse_coupon_id
-      @coupon_percent_off = parse_coupon_percent_off
-      @coupon_amount_off = parse_coupon_amount_off.to_f / 100
       @total_amount = @invoice.total
       @number = @invoice.number
       @subtotal = @invoice.subtotal
@@ -40,6 +37,14 @@ class StripeInvoicePdf
     def self.debug(id)
       Stripe.api_key = key
       Stripe::Invoice.retrieve id
+    end
+
+    def coupon
+      return nil unless subscription
+      return nil unless subscription.discount
+      id = subscription.discount.coupon.id
+      return "#{id} #{subscription.discount.coupon.percent_off}" if subscription.discount.coupon.percent_off
+      "#{id} #{number_to_currency(subscription.discount.coupon.amount_off)}"
     end
 
     def date
@@ -93,24 +98,6 @@ class StripeInvoicePdf
     def subscription
       return nil unless @invoice.subscription
       @subscription ||= Stripe::Subscription.retrieve(@invoice.subscription)
-    end
-
-    def parse_coupon_id
-      return nil unless subscription
-      return nil unless subscription.discount
-      subscription.discount.coupon.id
-    end
-
-    def parse_coupon_percent_off
-      return nil unless subscription
-      return nil unless subscription.discount
-      subscription.discount.coupon.percent_off
-    end
-
-    def parse_coupon_amount_off
-      return nil unless subscription
-      return nil unless subscription.discount
-      subscription.discount.coupon.amount_off
     end
   end
 end

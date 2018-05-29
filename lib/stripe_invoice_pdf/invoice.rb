@@ -66,7 +66,7 @@ class StripeInvoicePdf
     end
 
     def amount
-      number_to_currency(plan.try(:amount).to_f / 100.0)
+      number_to_currency(plan.try(:amount).to_f / 100.0 * @invoice.lines.data.first.quantity)
     end
 
     def discount

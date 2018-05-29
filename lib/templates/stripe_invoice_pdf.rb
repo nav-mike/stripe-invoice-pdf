@@ -11,7 +11,7 @@
 StripeInvoicePdf.config = {
   # Define your Stripe api_key:
   #
-  # api_key: 'sk_...'
+  # api_key: 'sk_...',
   #
   # Add your logo here. If you use svg, replace html in view.
   #

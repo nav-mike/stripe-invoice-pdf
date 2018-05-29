@@ -9,8 +9,8 @@ require 'stripe_invoice_pdf/version'
 Gem::Specification.new do |s|
   s.name        = 'stripe_invoice_pdf'
   s.version     = StripeInvoicePdf::VERSION
-  s.authors     = ['Mikhail Navrotskiy']
-  s.email       = ['m.navrotskiy@hotmail.com']
+  s.authors     = ['Mikhail Navrotskiy', 'Vladislav Drannikov']
+  s.email       = ['mikhail.navrotskiy@justwebit.ru', 'vladislav.drannikov@justwebit.ru']
   s.homepage    = 'https://github.com/nav-mike/stripe-invoice-pdf'
   s.summary     = 'Simple stripe invoice pdf generator for rails'
   s.description = 'Simple stripe invoice pdf generator for rails'

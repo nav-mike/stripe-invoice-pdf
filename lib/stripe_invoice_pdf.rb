@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'stripe_invoice_pdf/invoice'
+require 'stripe_invoice_pdf/railtie'
+require 'stripe_invoice_pdf/version'
 require 'wicked_pdf'
 
 class StripeInvoicePdf

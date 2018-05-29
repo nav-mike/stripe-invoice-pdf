@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile']
   s.test_files = Dir['test/**/*']
 
-  s.add_dependency 'rails', '~> 4.2.1'
+  s.add_dependency 'rails', '>= 4.2.1'
   s.add_dependency 'stripe', '~> 3.13.0'
   s.add_dependency 'wicked_pdf', '~> 1.1.0'
   s.add_dependency 'wkhtmltopdf-binary'

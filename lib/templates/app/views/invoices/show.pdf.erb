@@ -138,17 +138,19 @@
         </td>
       </tr>
 
-      <tr>
-        <td colspan="2" class="non-top-bordered"></td>
+      <% if @invoice.coupon.present? %>
+        <tr>
+          <td colspan="2" class="non-top-bordered"></td>
 
-        <td class="bordered chalky">
-          <%= @invoice.coupon %>
-        </td>
+          <td class="bordered chalky">
+            <%= @invoice.coupon %>
+          </td>
 
-        <td class="bordered">
-          <%= @invoice.discount %>
-        </td>
-      </tr>
+          <td class="bordered">
+            <%= @invoice.discount %>
+          </td>
+        </tr>
+      <% end %>
 
       <tr>
         <td colspan="2" class="non-top-bordered"></td>

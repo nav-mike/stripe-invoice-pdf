@@ -3,7 +3,7 @@
 class StripeInvoicePdf
   module Helpers
     def logo_svg(name = nil)
-      logo_svg_file(name) if name
+      return logo_svg_file(name) if name
       raise 'Insert SVG here!' unless block_given?
       yield
     end

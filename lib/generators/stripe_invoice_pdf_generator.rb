@@ -15,10 +15,6 @@ if defined?(Rails)
         "Rails.application.config.assets.precompile += %w( stripe_invoice_pdf.css )\n"
       end
 
-      inject_into_class 'config/application.rb', 'Application' do
-        "    config.assets.precompile << /\.(?:ttf)\z/\n"
-      end
-
       copy_file 'app/controllers/invoices_controller.rb'
 
       copy_file 'app/views/invoices/show.pdf.erb'
@@ -26,8 +22,6 @@ if defined?(Rails)
 
       copy_file 'app/assets/stylesheets/stripe_invoice_pdf.css'
       copy_file 'app/assets/stylesheets/bootstrap.min.css'
-
-      copy_file 'app/assets/fonts/Lato-Regular.ttf'
 
       generate 'wicked_pdf'
     end

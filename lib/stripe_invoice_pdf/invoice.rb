@@ -53,7 +53,7 @@ class StripeInvoicePdf
     end
 
     def subtotal
-      number_to_currency(@invoice.subtotal)
+      number_to_currency(@invoice.subtotal.to_f / 100.0)
     end
 
     def total

@@ -16,7 +16,7 @@ gem 'stripe_invoice_pdf', git: 'https://github.com/nav-mike/stripe-invoice-pdf.g
 
 And then execute:
 ```bash
-$ bundle
+$ bundle install
 ```
 
 Then create the initializer with

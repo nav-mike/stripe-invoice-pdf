@@ -8,7 +8,7 @@ if defined?(Rails)
       copy_file 'stripe_invoice_pdf.rb', 'config/initializers/stripe_invoice_pdf.rb'
 
       inject_into_file 'config/routes.rb', after: 'Rails.application.routes.draw do' do
-        "\n  get 'invoices/:invoice_id' => 'invoices#show', constraints: {invoice_id: /[a-z0-9\_]+/i}"
+        "\n  get 'invoices/:invoice_id' => 'invoices#show', constraints: {invoice_id: /[a-z0-9\_]+/i}\n"
       end
 
       append_to_file 'config/initializers/assets.rb' do

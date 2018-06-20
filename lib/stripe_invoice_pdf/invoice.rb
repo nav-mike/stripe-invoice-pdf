@@ -30,6 +30,17 @@ class StripeInvoicePdf
     def quantity
       @invoice.lines.data.first.quantity
     end
+    
+    def tax
+      return nil if @invoice.lines.data.size < 2
+      @tax ||= @invoice.lines.data[1]
+      OpenStruct.new(
+        description: @tax.description,
+        quantity: @tax.quantity,
+        price: number_to_currency(@tax.try(:amount).to_f / 100.0),
+        amount: number_to_currency(@tax.try(:amount).to_f / 100.0 * @tax.quantity)
+      )
+    end
 
     def coupon
       return nil unless subscription

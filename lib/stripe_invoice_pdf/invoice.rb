@@ -30,7 +30,7 @@ class StripeInvoicePdf
     def quantity
       @invoice.lines.data.first.quantity
     end
-    
+
     def tax
       return nil if @invoice.lines.data.size < 2
       @tax ||= @invoice.lines.data[1]
@@ -43,11 +43,10 @@ class StripeInvoicePdf
     end
 
     def coupon
-      return nil unless subscription
-      return nil unless subscription.discount
-      id = subscription.discount.coupon.id
-      return "#{id} (#{subscription.discount.coupon.percent_off}%)" if subscription.discount.coupon.percent_off
-      "#{id} (#{number_to_currency(subscription.discount.coupon.amount_off.to_f / 100.0)})"
+      return nil if @invoice.try(:discount).try(:coupon).blank?
+      id = @invoice.discount.coupon.id
+      return "#{id} (#{@invoice.discount.coupon.percent_off}%)" if @invoice.discount.coupon.percent_off.present?
+      "#{id} (#{number_to_currency(@invoice.discount.coupon.amount_off.to_f / 100.0)})"
     end
 
     def date
@@ -82,10 +81,9 @@ class StripeInvoicePdf
 
     def discount
       amount = plan.try(:amount).to_f / 100.0 * @invoice.lines.data.first.quantity.to_f
-      return number_to_currency(0.0) unless subscription
-      return number_to_currency(0.0) unless subscription.discount
-      return number_to_currency(subscription.discount.coupon.amount_off.to_f / 100.0) if subscription.discount.coupon.amount_off
-      number_to_currency((amount * subscription.discount.coupon.percent_off / 100.0).to_f)
+      return number_to_currency(0.0) if @invoice.try(:discount).try(:coupon).blank?
+      return number_to_currency(@invoice.discount.coupon.amount_off.to_f / 100.0) if @invoice.discount.coupon.amount_off.present?
+      number_to_currency((amount * @invoice.discount.coupon.percent_off / 100.0).to_f)
     end
 
     def number

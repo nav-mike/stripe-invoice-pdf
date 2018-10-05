@@ -1,5 +1,7 @@
 # Stripe Invoice PDF
 
+![status](https://img.shields.io/badge/status-deprecated-red.svg)
+
 ## A PDF generation stripe's invoices plugin for Ruby on Rails
 
 Plugin uses the plugin [wicked_pdf](https://github.com/mileszs/wicked_pdf) to build a PDF file.  You can customize HTML-template.
